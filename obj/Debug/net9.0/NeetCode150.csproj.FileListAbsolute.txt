@@ -12,3 +12,4 @@ C:\Users\PC\source\repos\DS_Algos_PS\NeetCode150\obj\Debug\net9.0\refint\NeetCod
 C:\Users\PC\source\repos\DS_Algos_PS\NeetCode150\obj\Debug\net9.0\NeetCode150.pdb
 C:\Users\PC\source\repos\DS_Algos_PS\NeetCode150\obj\Debug\net9.0\NeetCode150.genruntimeconfig.cache
 C:\Users\PC\source\repos\DS_Algos_PS\NeetCode150\obj\Debug\net9.0\ref\NeetCode150.dll
+C:\Users\PC\source\repos\DS_Algos_PS\NeetCode150\obj\Debug\net9.0\NeetCode150.sourcelink.json
