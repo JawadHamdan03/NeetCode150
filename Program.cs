@@ -1,8 +1,19 @@
 ﻿
+using System.Collections;
+
 int[] nums = { 1, 2, 4, 3,3 };
 Console.WriteLine(ContainsDuplicate(nums));
 Console.WriteLine(ValidAnagram("cat","tac"));
-Console.WriteLine(TwoSum(nums,3));
+printArray(TwoSum(nums,3));
+
+void printArray<T>(T[]arr)
+{
+    foreach (var item in arr)
+    {
+        Console.Write($"{item} ");
+    }
+}
+
 
 bool ContainsDuplicate(int[] nums)
 {
@@ -47,16 +58,18 @@ bool ValidAnagram(string s, string t)
 
 int[] TwoSum(int[]nums, int target)
 {
-    HashSet<int> set = new HashSet<int>();
+    // using HashMap to store the numbers we have seen => O(n)
+
+    Dictionary<int , int > map = new Dictionary<int, int>();
 
     for (global::System.Int32 i = 0; i < nums.Length; i++)
     {
-        if (set.Contains(target - nums[i]))
-            return new int[] { nums[i], target - nums[i] };
-
-        else
-            set.Add(nums[i]);
-        
+        int temp = nums[i];
+        if (map.ContainsKey(target - temp))
+        {
+            return new int[] { map[target - temp], i};
+        }
+        map.Add(nums[i],i);
     }
 
     return null;
