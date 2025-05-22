@@ -2,19 +2,21 @@
 using System;
 using System.Collections;
 
-int[] nums = { 1, 2,2,2, 4,4 ,3,3,3,3 };
+int[] nums = { 1, 2,4,6 };
 string[] strArr= { "eat", "tea", "tan", "ate", "nat", "bat" };
 //Console.WriteLine(ContainsDuplicate(nums));
 //Console.WriteLine(ValidAnagram("cat","tac"));
 //printArray(TwoSum(nums,3));
 //GroupAnagrams(strArr);
-printArray(TopKFrequent(nums,2));
+//printArray(TopKFrequent(nums,2));
+ProductOfArrayExceptItSelf(nums);
 void printArray<T>(T[]arr)
 {
     foreach (var item in arr)
     {
         Console.Write($"{item} ");
     }
+    Console.WriteLine("");
 }
 
 
@@ -122,6 +124,29 @@ int[] TopKFrequent(int[] nums , int k )
         res[i] = target;
         map.Remove(target);
     }
+
+    return res;
+}
+
+
+int[] ProductOfArrayExceptItSelf(int []nums)
+{ // O(n)
+        
+    int[] prefix = new int [nums.Length];
+    int[] postfix = new int [nums.Length];
+    int[] res = new int [nums.Length];
+
+    prefix[0] = 1;
+    postfix[postfix.Length-1] = 1;
+
+    for (global::System.Int32 i = 1; i < nums.Length; i++)
+        prefix[i] = nums[i-1]*prefix[i-1];
+
+    for (global::System.Int32 i = postfix.Length-2; i >=0; i--)
+        postfix[i]=nums[i+1]*postfix[i+1];
+
+    for (global::System.Int32 i = 0; i < nums.Length; i++)
+        res[i]=prefix[i]*postfix[i];
 
     return res;
 }
