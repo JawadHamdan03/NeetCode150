@@ -9,7 +9,15 @@ string[] strArr= { "eat", "tea", "tan", "ate", "nat", "bat" };
 //printArray(TwoSum(nums,3));
 //GroupAnagrams(strArr);
 //printArray(TopKFrequent(nums,2));
-ProductOfArrayExceptItSelf(nums);
+//ProductOfArrayExceptItSelf(nums);
+string s = Encode(strArr);
+Console.WriteLine(s);
+
+var res = Decode(s);
+foreach (var item in res)
+{
+    Console.WriteLine(item);
+}
 void printArray<T>(T[]arr)
 {
     foreach (var item in arr)
@@ -190,4 +198,33 @@ static bool validSudoku(char[][]matrix)
 
 
     return true;
+}
+
+
+
+static string Encode(IList<string> strs)
+{
+    string s="";
+    foreach (var item in strs)
+        s += item + '.';
+
+    return s;
+}
+
+static List<string> Decode(string s)
+{
+
+    string tempS = "";
+    List<string> res = new List<string>();
+    foreach (char item in s)
+    {
+        if (item=='.')
+        {
+            res.Add(tempS);
+            tempS = "";
+        }
+        else
+            tempS += item;
+    }
+    return res;
 }
