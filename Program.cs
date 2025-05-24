@@ -2,22 +2,11 @@
 using System;
 using System.Collections;
 
-int[] nums = { 1, 2,4,6 };
+int[] nums = { 0, 3, 2, 5, 4, 6, 1, 1 };
 string[] strArr= { "eat", "tea", "tan", "ate", "nat", "bat" };
-//Console.WriteLine(ContainsDuplicate(nums));
-//Console.WriteLine(ValidAnagram("cat","tac"));
-//printArray(TwoSum(nums,3));
-//GroupAnagrams(strArr);
-//printArray(TopKFrequent(nums,2));
-//ProductOfArrayExceptItSelf(nums);
-string s = Encode(strArr);
-Console.WriteLine(s);
 
-var res = Decode(s);
-foreach (var item in res)
-{
-    Console.WriteLine(item);
-}
+Console.WriteLine(LongestConsecutive(nums));
+
 void printArray<T>(T[]arr)
 {
     foreach (var item in arr)
@@ -26,7 +15,6 @@ void printArray<T>(T[]arr)
     }
     Console.WriteLine("");
 }
-
 
 bool ContainsDuplicate(int[] nums)
 {
@@ -227,4 +215,42 @@ static List<string> Decode(string s)
             tempS += item;
     }
     return res;
+}
+
+
+static int LongestConsecutive(int[] nums)
+{
+    if (nums.Length == 0)
+        return 0;
+    if (nums.Length == 1)
+        return 1;
+
+
+    Array.Sort(nums);
+
+    Dictionary<int, int> map = new Dictionary<int, int>();
+   
+    int seqNum = 1;
+    
+    for (global::System.Int32 i = 0; i < nums.Length; i++)
+    {
+
+
+
+        if (i == 0)
+            map.Add(seqNum, 1);
+
+        else if (nums[i] - 1 == nums[i - 1])
+            map[seqNum]++;
+        else if (nums[i] == nums[i - 1]) continue;
+
+        else
+        {
+            seqNum++;
+            map.Add(seqNum, 1);
+        }
+    }
+
+
+    return map.Values.Max();
 }
