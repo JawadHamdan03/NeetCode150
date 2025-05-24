@@ -5,8 +5,7 @@ using System.Collections;
 int[] nums = { 0, 3, 2, 5, 4, 6, 1, 1 };
 string[] strArr= { "eat", "tea", "tan", "ate", "nat", "bat" };
 
-Console.WriteLine(LongestConsecutive(nums));
-
+Console.WriteLine(ValidPalindrome("Was it a car or a cat I saw?"));
 void printArray<T>(T[]arr)
 {
     foreach (var item in arr)
@@ -225,18 +224,13 @@ static int LongestConsecutive(int[] nums)
     if (nums.Length == 1)
         return 1;
 
-
     Array.Sort(nums);
 
     Dictionary<int, int> map = new Dictionary<int, int>();
-   
     int seqNum = 1;
     
     for (global::System.Int32 i = 0; i < nums.Length; i++)
     {
-
-
-
         if (i == 0)
             map.Add(seqNum, 1);
 
@@ -250,7 +244,35 @@ static int LongestConsecutive(int[] nums)
             map.Add(seqNum, 1);
         }
     }
-
-
     return map.Values.Max();
+}
+
+
+static bool ValidPalindrome(string str)
+{
+    // Normalize string: lowercase and keep only alphanumeric characters
+    str = str.ToLower();
+    var cleaned = new List<char>();
+
+    foreach (char c in str)
+    {
+        if (char.IsLetterOrDigit(c))
+        {
+            cleaned.Add(c);
+        }
+    }
+
+    int i = 0;
+    int j = cleaned.Count - 1;
+
+    while (i < j)
+    {
+        if (cleaned[i] != cleaned[j])
+            return false;
+
+        i++;
+        j--;
+    }
+
+    return true;
 }
