@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 int[] nums = { 1,2,3,4 };
 printArray(TwoSumII(nums,3));
@@ -297,4 +298,37 @@ int[] TwoSumII(int[] nums , int target)
     }
 
     return null;
+}
+
+
+List<List<int>> ThreeSum(int[] nums)
+{
+    Array.Sort(nums);
+    List<List<int>> result = new List<List<int>>();
+
+    for (int i = 0; i < nums.Length; i++)
+    {
+        if (nums[i] > 0) break;
+        if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+        int l = i + 1;
+        int r = nums.Length-1;
+
+        while (l<r)
+        {
+            int sum=nums[i]+nums[l] + nums[r];
+            if (sum > 0) r--;
+            else if (sum < 0) l++;
+            else
+            {
+                result.Add(new List<int>(new int[]{ nums[i], nums[l], nums[r] }));
+                l++;
+                r--;
+
+                while (l < r && nums[l] == nums[l - 1])
+                    l++;
+            }
+        }
+    }
+    return result;
 }
