@@ -2,10 +2,10 @@
 using System;
 using System.Collections;
 
-int[] nums = { 0, 3, 2, 5, 4, 6, 1, 1 };
-string[] strArr= { "eat", "tea", "tan", "ate", "nat", "bat" };
+int[] nums = { 1,2,3,4 };
+printArray(TwoSumII(nums,3));
 
-Console.WriteLine(ValidPalindrome("Was it a car or a cat I saw?"));
+
 void printArray<T>(T[]arr)
 {
     foreach (var item in arr)
@@ -250,7 +250,6 @@ static int LongestConsecutive(int[] nums)
 
 static bool ValidPalindrome(string str)
 {
-    // Normalize string: lowercase and keep only alphanumeric characters
     str = str.ToLower();
     var cleaned = new List<char>();
 
@@ -275,4 +274,27 @@ static bool ValidPalindrome(string str)
     }
 
     return true;
+}
+
+
+int[] TwoSumII(int[] nums , int target)
+{
+    int sum = 0;
+    int left = 0;
+    int right = nums.Length - 1;
+    while (left<right)
+    {
+        sum = nums[left] + nums[right];
+        
+
+        if (sum>target)
+            right--;
+        
+        else if(sum<target)
+            left++;
+
+        return new int[]{left, right};
+    }
+
+    return null;
 }
