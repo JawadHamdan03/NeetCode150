@@ -3,8 +3,8 @@ using System;
 using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 
-int[] nums = { 1,2,3,4 };
-printArray(TwoSumII(nums,3));
+int[] nums = { 1, 7, 2, 5, 4, 7, 3, 6 };
+Console.WriteLine(ContainerWithMostWater(nums));
 
 
 void printArray<T>(T[]arr)
@@ -331,4 +331,32 @@ List<List<int>> ThreeSum(int[] nums)
         }
     }
     return result;
+}
+
+int ContainerWithMostWater(int[] height)
+{
+    int area=0;
+    int max = 0;
+
+    int left = 0;
+    int right = height.Length - 1;
+
+    int h;
+    int w;
+    while (left<right)
+    {
+
+        h = Math.Min(height[left], height[right]);
+        w = right - left;
+
+        area = h * w;
+        max = Math.Max(max,area);
+
+        if (height[right] >= height[left])
+            left++;
+
+        else 
+            right--;
+    }
+    return max;
 }
