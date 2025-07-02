@@ -3,8 +3,8 @@ using System;
 using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 
-int[] nums = { 1, 7, 2, 5, 4, 7, 3, 6 };
-Console.WriteLine(ContainerWithMostWater(nums));
+int[] nums = { 10, 1, 5, 6, 7, 1 };
+Console.WriteLine(MaxProfit(nums));
 
 
 void printArray<T>(T[]arr)
@@ -95,7 +95,7 @@ List<List<string>> GroupAnagrams(string[] strs)
  
         
     }
-
+    
     return set.Values.ToList<List<string>>();
 }
 
@@ -120,7 +120,7 @@ int[] TopKFrequent(int[] nums , int k )
         res[i] = target;
         map.Remove(target);
     }
-
+    
     return res;
 }
 
@@ -393,3 +393,22 @@ int ContainerWithMostWater(int[] height)
     }
     return total;
 }
+
+
+
+int MaxProfit(int[] prices)
+{
+    int buyValue = prices[0];
+    int maxProfit = 0;
+    for (global::System.Int32 i = 0; i < prices.Length; i++)
+    {
+        if (prices[i] < buyValue) buyValue=prices[i];
+
+        if ((prices[i] - buyValue) > maxProfit) maxProfit = (prices[i] - buyValue);
+        
+    }
+
+    return maxProfit;
+
+}
+//10,1,5,6,7,1
