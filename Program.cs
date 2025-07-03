@@ -4,8 +4,8 @@ using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 
 int[] nums = { 10, 1, 5, 6, 7, 1 };
-Console.WriteLine(MaxProfit(nums));
-
+Console.WriteLine(LengthOfLongestSubstring("au"
+));
 
 void printArray<T>(T[]arr)
 {
@@ -398,17 +398,44 @@ int ContainerWithMostWater(int[] height)
 
 int MaxProfit(int[] prices)
 {
-    int buyValue = prices[0];
+    int minBuyValue = prices[0];
     int maxProfit = 0;
     for (global::System.Int32 i = 0; i < prices.Length; i++)
     {
-        if (prices[i] < buyValue) buyValue=prices[i];
+        if (prices[i] < minBuyValue) minBuyValue=prices[i];
 
-        if ((prices[i] - buyValue) > maxProfit) maxProfit = (prices[i] - buyValue);
+        if ((prices[i] - minBuyValue) > maxProfit) maxProfit = (prices[i] - minBuyValue);
         
     }
 
     return maxProfit;
 
 }
-//10,1,5,6,7,1
+
+
+int LengthOfLongestSubstring(string s)
+{
+
+    if (s == null | s.Length == 0) return 0;
+
+    if (s.Length <= 1) return s.Length;
+    int left = 0;
+    int right = 0;
+    int ans = 0;
+
+    HashSet<char> set =new HashSet<char>();
+
+    while (right<s.Length)
+    {
+        char c = s[right];
+        while (set.Contains(c))
+        {
+            set.Remove(s[left]);
+            left++;
+        }
+        set.Add(c);
+        ans = Math.Max(ans,right-left+1);
+        right++;
+    }
+    return ans;
+} 
